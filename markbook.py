@@ -58,6 +58,7 @@ def remove_student_from_classroom(student: Dict, classroom: Dict):
         classroom: the class from which the student will be removed.
     """
     del classroom[student]
+    return classroom
 
 
 def edit_student(student: Dict, **kwargs: Dict):

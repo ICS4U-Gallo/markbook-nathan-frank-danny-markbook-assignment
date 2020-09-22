@@ -99,7 +99,10 @@ def remove_student_from_classroom(student: Dict, classroom: Dict):
         student: The student to be removed
         classroom: the class from which the student will be removed.
     """
+    students = classroom["student_list"]
+    students.remove(student)    # Remove the student dictionary into the student list inside the classroom dictionary
     
+    return classroom
 
 
 def edit_student(student: Dict, **kwargs: Dict):

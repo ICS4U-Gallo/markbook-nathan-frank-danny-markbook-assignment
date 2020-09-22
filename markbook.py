@@ -79,18 +79,17 @@ def calculate_average_mark(student: Dict) -> float:
     average_mark = total_marks / len(student_marks)
     return average_mark
 
-def add_student_to_classroom(student: Dict, classroom: Dict):
+def add_student_to_classroom(student: Dict, classroom: Dict):a
     """Adds student to a classroom
     Args:
         student: Student dict
         classroom: The classroom to add the student to
     """
+    
+    # Add 
+    students = classroom["student_list"]
+    students.append(student)    # Append the student dictionary into the student list inside the classroom dictionary
 
-    # Add student to student list in classroom dictionary
-
-
-    for i in student:
-        classroom[i] = i
     return classroom
 
 

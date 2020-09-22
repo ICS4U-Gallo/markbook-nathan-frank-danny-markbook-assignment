@@ -54,7 +54,7 @@ def create_assignment(name: str, due: str, points: int) -> Dict:
     return assignment
 
 
-def create_classroom(course_code: str, course_name: str, period: int, teacher: str, students: List[str], assignments: Dict) -> Dict:
+def create_classroom(course_code: str, course_name: str, period: int, teacher: str, student_list: List, assignment_list: List) -> Dict:
     """Creates a classroom dictionary"""
     classroom = {
         "course_code": course_code,

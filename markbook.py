@@ -48,11 +48,11 @@ def add_student_to_classroom(student: Dict, classroom: Dict):
 
 def remove_student_from_classroom(student: Dict, classroom: Dict):
     """Removes student from classroom
-
     Args:
         student: The student to be removed
         classroom: the class from which the student will be removed.
     """
+    del classroom[student]
     pass
 
 

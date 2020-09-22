@@ -68,8 +68,7 @@ def remove_student_from_classroom(student: Dict, classroom: Dict):
         classroom: the class from which the student will be removed.
     """
     
-    if classroom[students]
-
+    pass
 
 def edit_student(student: Dict, **kwargs: Dict):
     """Edits the student's info with the provided key/value pairs

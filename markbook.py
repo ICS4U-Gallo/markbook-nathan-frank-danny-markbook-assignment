@@ -2,7 +2,7 @@
 Markbook Application
 Group members: Danny, Frank, Nathan
 """
-from typing import Dict
+from typing import Dict, List
 
 
 def create_assignment(name: str, due: str, points: int) -> Dict:
@@ -22,13 +22,15 @@ def create_assignment(name: str, due: str, points: int) -> Dict:
     }
 
 
-def create_classroom(course_code: str, course_name: str, period: int, teacher: str) -> Dict:
+def create_classroom(course_code: str, course_name: str, period: int, teacher: str, students: List[str], assignments: Dict) -> Dict:
     """Creates a classroom dictionary"""
     return {
         "course_code": course_code,
         "course_name": course_name,
         "period": period,
-        "teacher": teacher
+        "teacher": teacher,
+        "students": students,
+        "assignments": assignments
     }
 
 def calculate_average_mark(student: Dict) -> float:

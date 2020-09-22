@@ -15,13 +15,21 @@ def create_assignment(name: str, due: str, points: int) -> Dict:
     Returns:
         Assignment as a dictionary.
     """
-    return {}
+    return {
+        "name": name,
+        "due_date": due,
+        "points": points
+    }
 
 
 def create_classroom(course_code: str, course_name: str, period: int, teacher: str) -> Dict:
     """Creates a classroom dictionary"""
-    return {}
-
+    return {
+        "course_code": course_code,
+        "course_name": course_name,
+        "period": period,
+        "teacher": teacher
+    }
 
 def calculate_average_mark(student: Dict) -> float:
     """Calculates the average mark of a student"""

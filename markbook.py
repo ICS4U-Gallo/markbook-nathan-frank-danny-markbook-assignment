@@ -15,16 +15,18 @@ def create_assignment(name: str, due: str, points: int) -> Dict:
     Returns:
         Assignment as a dictionary.
     """
-    return {
+    assignment = {
         "name": name,
         "due_date": due,
         "points": points
     }
+    
+    return assignment
 
 
 def create_classroom(course_code: str, course_name: str, period: int, teacher: str, students: List[str], assignments: Dict) -> Dict:
     """Creates a classroom dictionary"""
-    return {
+    classroom = {
         "course_code": course_code,
         "course_name": course_name,
         "period": period,
@@ -33,13 +35,16 @@ def create_classroom(course_code: str, course_name: str, period: int, teacher: s
         "assignments": assignments
     }
 
+    return classroom
+    
 def calculate_average_mark(student: Dict) -> float:
     """Calculates the average mark of a student"""
     total_marks = 0
-    student_marks = student["mark"]
+    student_marks = student["marks"]
     
     for mark in student_marks:
         total_marks += mark      
+             
 
     average_mark = total_marks / len(student_marks)
     return average_mark
@@ -62,8 +67,8 @@ def remove_student_from_classroom(student: Dict, classroom: Dict):
         student: The student to be removed
         classroom: the class from which the student will be removed.
     """
-    del classroom[student]
-    return classroom
+    
+    if classroom[students]
 
 
 def edit_student(student: Dict, **kwargs: Dict):

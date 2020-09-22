@@ -5,6 +5,36 @@ Group members: Danny, Frank, Nathan
 from typing import Dict, List
 
 
+# Students Dictionary 
+"""
+first_name: str
+last_name: str
+Gender
+image
+student number
+grade: int
+email
+marks: List[float]
+Comments
+"""
+
+# class dictionary
+"""
+course code
+course name
+period
+teacher name
+student list
+assignments list
+"""
+
+# assignments dictionary
+"""
+Due
+name
+points
+"""
+
 def create_assignment(name: str, due: str, points: int) -> Dict:
     """Creates an assignment represented as a dictionary
     
@@ -36,7 +66,7 @@ def create_classroom(course_code: str, course_name: str, period: int, teacher: s
     }
 
     return classroom
-    
+
 def calculate_average_mark(student: Dict) -> float:
     """Calculates the average mark of a student"""
     total_marks = 0
@@ -56,6 +86,9 @@ def add_student_to_classroom(student: Dict, classroom: Dict):
         classroom: The classroom to add the student to
     """
 
+    # Add student to student list in classroom dictionary
+
+
     for i in student:
         classroom[i] = i
     return classroom
@@ -68,7 +101,7 @@ def remove_student_from_classroom(student: Dict, classroom: Dict):
         classroom: the class from which the student will be removed.
     """
     
-    pass
+
 
 def edit_student(student: Dict, **kwargs: Dict):
     """Edits the student's info with the provided key/value pairs

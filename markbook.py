@@ -5,36 +5,6 @@ Group members: Danny, Frank, Nathan
 from typing import Dict, List
 
 
-# Students Dictionary 
-"""
-first_name: str
-last_name: str
-Gender
-image
-student number
-grade: int
-email
-marks: List[float]
-Comments
-"""
-
-# class dictionary
-"""
-course code
-course name
-period
-teacher name
-student list
-assignments list
-"""
-
-# assignments dictionary
-"""
-Due
-name
-points
-"""
-
 def create_assignment(name: str, due: str, points: int) -> Dict:
     """Creates an assignment represented as a dictionary
     
@@ -111,5 +81,7 @@ def edit_student(student: Dict, **kwargs: Dict):
             data that needs to be changed. Can come in the form
             of a dictionary.
     """
-    classroom[student] = kwargs
-    return classroom
+    for key, value in kwargs.items():
+        student[key] = value
+    return student
+

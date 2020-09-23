@@ -45,12 +45,7 @@ def create_assignment(name: str, due: str, points: int) -> Dict:
     Returns:
         Assignment as a dictionary.
     """
-    assignment = {
-        "name": name,
-        "due_date": due,
-        "points": points
-    }
-    
+    assignment = {"name": name, "due_date": due, "points": points}
     return assignment
 
 

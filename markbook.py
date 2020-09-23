@@ -13,7 +13,8 @@ def main():
         print("Type 'exit' if you want to exit")
 
         try:
-            choice = ("Select a menu option:   ").lower()
+            choice = input("Select a menu option:   ")
+            choice.lower()
         except ValueError:
             print("Error. Please enter a string")
         

@@ -4,6 +4,35 @@ Group members: Danny, Frank, Nathan
 """
 from typing import Dict, List
 
+classrooms = []
+
+def main():
+    while True:
+        print("Type 'classroom' if you want to create a classroom")
+        print("Type 'list' if you want to list the classrooms")
+        print("Type 'exit' if you want to exit")
+
+        try:
+            choice = ("Select a menu option:   ").lower()
+        except ValueError:
+            print("Error. Please enter a string")
+        
+        if choice == "classroom":
+            create_classroom_interface()
+        elif choice == "list":
+            list_classrooms_interface()
+        elif choice == "exit":
+            exit()
+        else:
+            print("Please enter a vaid choice")
+        
+
+def create_classroom_interface():
+    pass
+
+def list_classrooms_interface():
+    pass
+    
 
 def create_assignment(name: str, due: str, points: int) -> Dict:
     """Creates an assignment represented as a dictionary
@@ -17,7 +46,8 @@ def create_assignment(name: str, due: str, points: int) -> Dict:
     """
     assignment = {"name": name, 
                   "due": due, 
-                  "points": points}
+                  "points": points
+                }
     return assignment
 
 
@@ -85,3 +115,6 @@ def edit_student(student: Dict, **kwargs: Dict):
         student[key] = value
     return student
 
+
+if __name__ == "__main__":
+    main()

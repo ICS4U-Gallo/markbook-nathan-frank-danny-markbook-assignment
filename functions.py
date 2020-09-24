@@ -1,5 +1,4 @@
-from markbook import *
-from typing import Dict, List
+import markbook
 import json
 
 classrooms = []
@@ -36,7 +35,7 @@ def create_classroom_interface():
         except ValueError:
             print("Error, please enter a string")
 
-    classroom = create_classroom(course_code, course_name, period, teacher)
+    classroom = markbook.create_classroom(course_code, course_name, period, teacher)
 
     with open("data.json", "r") as reader:
         json_object = json.loads(reader.read())
@@ -49,9 +48,14 @@ def create_classroom_interface():
         reader.write(json_object)
 
 def list_classrooms_interface():
+    classrooms_names = []
+    
     with open("data.json", "r") as data:
-        classroom_info = json.load(data)
-        print(classroom_info)
+        for classroom in data["classrooms"]:
+            course_names = json.load(classroom["course_name"])
+            classrooms_names.append(course_names)
+
+    print(classrooms_names)
 
 
 main()

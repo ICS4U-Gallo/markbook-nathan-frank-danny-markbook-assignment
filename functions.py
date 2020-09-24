@@ -18,6 +18,8 @@ def main():
             create_classroom_interface()
         elif choice == "list":
             list_classrooms_interface()
+        elif choice == "assignment":
+            create_assignment_interface()
         elif choice == "exit":
             exit()
         else:

@@ -57,5 +57,17 @@ def list_classrooms_interface():
 
     print(classrooms_names)
 
+def create_assignment_interface():
+    while True:
+        try:
+            name = input("Assignment Name: ")
+            due = input("due: ")
+            points = int(input("points: "))
+        except ValueError:
+            print("Error, please enter a string")
+
+        assignment = markbook.create_assignment(name, due, points)
+        new_assignment = json.dumps(assignment)
+        return new_assignment
 
 main()

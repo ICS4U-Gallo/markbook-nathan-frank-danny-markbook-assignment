@@ -1,15 +1,14 @@
 """
 Markbook Application
-Group members: Danny, Frank, Nathan
+Group members: Danny, Frank, Nahan
 """
-from typing import Dict, List
-    
+from typing import Dict
 
 def create_assignment(name: str, due: str, points: int) -> Dict:
     """Creates an assignment represented as a dictionary
     
     Args:
-        name: the name of the assignment.
+        name: the name of the assignmeyo nt.
         due: the due date for the assignment.
         points: what the assignment is out of (denominator).
     Returns:
@@ -86,6 +85,3 @@ def edit_student(student: Dict, **kwargs: Dict):
         student[key] = value
     return student
 
-
-if __name__ == "__main__":
-    main()

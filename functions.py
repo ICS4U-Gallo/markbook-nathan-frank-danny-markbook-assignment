@@ -6,9 +6,9 @@ classrooms = []
 
 def main():
     while True:
-        print('Type "classroom" if you want to create a classroom')
-        print('Type "list" if you want to list the classrooms')
-        print('Type "exit" if you want to exit')
+        print("Type 'classroom' if you want to create a classroom")
+        print("Type 'list' if you want to list the classrooms")
+        print("Type 'exit' if you want to exit")
 
         try:
             choice = input("Select a menu option:   ").lower()
@@ -30,8 +30,9 @@ def create_classroom_interface():
         try:
             course_code = input("Course Code:  ")
             course_name = input("Course Name:  ")
-            period = input("Period:  ")
+            period = int(input("Period:  "))
             teacher = input("Teacher Name:  ")
+            break
         except ValueError:
             print("Error, please enter a string")
 
@@ -45,13 +46,13 @@ def create_classroom_interface():
 
     classroom = json.dumps(classroom)
 
-    with open("data.json", "w") as writer:
-        json.dump(classroom, writer)
-
-    new_class = json.dumps(classroom)
-    return new_class
+    with open("data.json", "a") as f:
+        f.write(classroom)
 
 def list_classrooms_interface():
-    pass
+    with open("data.json", "r") as data:
+        classroom_info = json.load(data)
+        print(classroom_info)
+
 
 main()

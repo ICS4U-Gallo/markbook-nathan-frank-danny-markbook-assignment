@@ -33,6 +33,7 @@ def create_classroom_interface():
     teacher_name = str(input("Teacher Name: "))
     student_list = list(input("Student List: "))
     assignments_list = list(input("Assignments: ")
+    # I gathered the informations of the course above.
     
     classroom = {
     "course code": course_code,
@@ -41,8 +42,10 @@ def create_classroom_interface():
     "teacher name": teacher_name,
     "student list": student_list, 
     "assignments list": assignments_list
+    # I listed the information into a dictionary.
     }
     new_class = json.dumps(classroom)
+    # I .dump the dictionary into .json file.
     return new_class
 
 def list_classrooms_interface():

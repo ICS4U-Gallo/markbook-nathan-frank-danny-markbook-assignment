@@ -6,9 +6,11 @@ classrooms = []
 
 def main():
     while True:
-        print("Type 'classroom' if you want to create a classroom")
-        print("Type 'list' if you want to list the classrooms")
-        print("Type 'exit' if you want to exit")
+        print('Type "classroom" if you want to create a classroom')
+        print('Type "list" if you want to list the classrooms')
+        print('Type "exit" if you want to exit')
+        # Grammar fix in case anyone wondering.
+        # In a sentence, it is more proper to use " rather than ' to reference sth.
 
         try:
             choice = input("Select a menu option:   ").lower()
@@ -45,7 +47,7 @@ def create_classroom_interface():
     # I listed the information into a dictionary.
     }
     new_class = json.dumps(classroom)
-    # I .dump the dictionary into .json file.
+    # I dump the dictionary into .json file.
     return new_class
 
 def list_classrooms_interface():

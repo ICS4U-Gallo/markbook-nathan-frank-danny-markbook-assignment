@@ -26,7 +26,24 @@ def main():
         
 
 def create_classroom_interface():
-    pass
+    # This is from Frank, so there is no "glitchless-guarantee."
+    course_code = str(input("Course Code: "))
+    course_name = str(input("Course Name: "))
+    period = str(input("Period: "))
+    teacher_name = str(input("Teacher Name: "))
+    student_list = list(input("Student List: "))
+    assignments_list = list(input("Assignments: ")
+    
+    classroom = {
+    "course code": course_code,
+    "course name": course_name, 
+    "period": period,
+    "teacher name": teacher_name,
+    "student list": student_list, 
+    "assignments list": assignments_list
+    }
+    new_class = json.dumps(classroom)
+    return new_class
 
 def list_classrooms_interface():
     pass

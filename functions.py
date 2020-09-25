@@ -26,6 +26,8 @@ def main():
         else:
             print("Please enter a vaid choice")
         
+def add_to_data():
+    pass
 
 def create_classroom_interface():
     while True:
@@ -40,15 +42,19 @@ def create_classroom_interface():
 
     classroom = markbook.create_classroom(course_code, course_name, period, teacher)
 
-    with open("data.json", "r") as reader:
-        json_object = json.loads(reader.read())
-
-    classrooms = json_object["classrooms"]
+    try:
+        with open("data.json", "r") as reader:
+            data = json.loads(reader.read())
+    except FileNotFoundError:
+        print("Error, data.json file was not found")
+    
+    classrooms = data["classrooms"]
     classrooms.append(classroom)
 
     with open("data.json", "w") as writer:
-        json_object = json.dumps(json_object, indent=4)
-        reader.write(json_object)
+        data = json.dumps(data, indent=4)
+        writer.write(data)
+
 
 def list_classrooms_interface():
     classrooms_names = []

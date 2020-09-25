@@ -1,13 +1,13 @@
 {
     "classrooms": [
-
+        {
+            "course_code": "ICS4U1",
+            "course_name": "Computer Science",
+            "period": 2,
+            "teacher": "Gallo",
+            "student_list": [],
+            "assignment_list": [] 
+        }
     ],
-
-    "assignments": [
-
-    ]
-
-
+    "assignments": []
 }
-
-

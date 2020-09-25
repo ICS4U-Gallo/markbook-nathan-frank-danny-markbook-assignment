@@ -9,5 +9,11 @@
             "assignment_list": [] 
         }
     ],
-    "assignments": []
+    "assignments": [
+      {
+          "name": "Abc",
+          "due": "January 1",
+          "points": "100"
+      }
+    ]
 }

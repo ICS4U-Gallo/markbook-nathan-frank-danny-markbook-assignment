@@ -1,8 +1,7 @@
 import markbook
 import json
 
-classrooms = []
-
+# Main Function
 def main():
     while True:
         print("Type 'classroom' if you want to create a classroom")
@@ -10,11 +9,13 @@ def main():
         print("Type 'assignment' if you want to create an assignment")
         print("Type 'exit' if you want to exit")
 
+        # Gets input from user for which menu option to go into
         try:
             choice = input("Select a menu option:   ").lower()
         except ValueError:
             print("Error, Please enter a string")
         
+        # Handles which function to run depending on the user input
         if choice == "classroom":
             create_classroom_interface()
         elif choice == "list":
@@ -25,9 +26,24 @@ def main():
             exit()
         else:
             print("Please enter a vaid choice")
-        
-def add_to_data():
-    pass
+
+# Function for adding data to data.jsonfile
+def add_to_data(file_name, list_name, data_to_add):
+    try:
+        with open(file_name, "r") as reader:  
+            data = json.loads(reader.read())    # Stores the data file into a variable
+    except FileNotFoundError:
+        print("Error, data.json file was not found")
+    
+    # Appends the data into the specified json object's list
+    data[list_name].append(data_to_add)
+
+    with open(file_name, "w") as writer:
+        # Converts the python into json strings
+        data = json.dumps(data, indent=4)
+        # Overwrite the current data with the new added on data
+        writer.write(data)
+
 
 def create_classroom_interface():
     while True:
@@ -41,19 +57,8 @@ def create_classroom_interface():
             print("Error, please enter a string")
 
     classroom = markbook.create_classroom(course_code, course_name, period, teacher)
-
-    try:
-        with open("data.json", "r") as reader:
-            data = json.loads(reader.read())
-    except FileNotFoundError:
-        print("Error, data.json file was not found")
     
-    classrooms = data["classrooms"]
-    classrooms.append(classroom)
-
-    with open("data.json", "w") as writer:
-        data = json.dumps(data, indent=4)
-        writer.write(data)
+    add_to_data("data.json", "classrooms", classroom)
 
 
 def list_classrooms_interface():

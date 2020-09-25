@@ -4,17 +4,23 @@ import json
 # Main Function
 def main():
     while True:
-        print("\n")
-        print("Type 'classroom' if you want to create a classroom")
-        print("Type 'list' if you want to list the classrooms")
-        print("Type 'assignment' if you want to create an assignment")
-        print("Type 'exit' if you want to exit")
-
+        print(" ---------------------------------------------------------- ")
+        print("|                         MARKBOOK                         |")
+        print(" ---------------------------------------------------------- ")
+        print('| Type "classroom" if you want to create a classroom.      |')
+        print('| Type "list" if you want to list the classrooms.          |')
+        print('| Type "assignment" if you want to create an assignment.   |')
+        print('| Type "exit" if you want to exit.                         |')
+        print(" ---------------------------------------------------------- ")
         # Gets input from user for which menu option to go into
         try:
+            print()
             choice = input("Select a menu option:   ").lower()
+            print()
         except ValueError:
-            print("Error, Please enter a string")
+            print(" ---------------------------------------------------------- ")
+            print("| Error, Please enter a string.                            |")
+            print(" ---------------------------------------------------------- ")
         
         # Handles which function to run depending on the user input
         if choice == "classroom":

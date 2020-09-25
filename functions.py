@@ -120,14 +120,10 @@ def list_classrooms_interface():
     except ValueError:
         print("Error, please enter a string")
 
-    if classroom = "exit":
-        exit()
-
     for classe in data["classrooms"]:
         if classe["course_name"] == classroom:
             print(classe)
             break
-
 
 def create_assignment_interface():
     while True:
@@ -135,40 +131,21 @@ def create_assignment_interface():
             name = input("Assignment Name: ")
             due = input("due: ")
             points = int(input("points: "))
-            break
         except ValueError:
             print("Error, please enter a string")
 
         assignment = markbook.create_assignment(name, due, points)
-        add_to_data("data.json", "assignments", assignment)
-
-
+        new_assignment = json.dumps(assignment)
+        return new_assignment
+    
 def list_assignment_interface():
-    assignment_names = []
+    assignment_names_list = []
 
     with open("data.json", "r") as data:
-        data = json.load(data)
         for assignment in data["assignments"]:
-            names = assignment["name"]
-            assignment_names.append(names)
+            assignment_names = json.load(assignment["name"])
+            assignment_names_list.append(assignment_names)
 
-    print("\nYour Assignments:  ")
-    print(names)
-
-    print("\nType the name of the assignment you want to view")
-    print("Or type exit to exit the program")
-
-    try:
-        assignment = input("\nPlease enter the name of the assignment you want to view(Case Sensitive):  ")
-    except ValueError:
-        print("Error, please enter a string")
-
-    if assignment == "exit":
-        exit()
-        
-    for assignment_info in data["assignments"]:
-        if assignment_info["name"] == assignment:
-            print(assignment_info)
-            break
+    print(assignment_names_list)
     
 main()

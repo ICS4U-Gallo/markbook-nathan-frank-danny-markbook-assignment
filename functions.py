@@ -83,5 +83,15 @@ def create_assignment_interface():
         assignment = markbook.create_assignment(name, due, points)
         new_assignment = json.dumps(assignment)
         return new_assignment
+    
+def list_assignment_interface():
+    assignment_names_list = []
 
+    with open("data.json", "r") as data:
+        for assignment in data["assignments"]:
+            assignment_names = json.load(assignment["name"])
+            assignment_names_list.append(assignment_names)
+
+    print(assignment_names_list)
+    
 main()

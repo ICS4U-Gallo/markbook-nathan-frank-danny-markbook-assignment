@@ -120,6 +120,9 @@ def list_classrooms_interface():
     except ValueError:
         print("Error, please enter a string")
 
+    if classroom == "exit":
+        exit()
+
     for classe in data["classrooms"]:
         if classe["course_name"] == classroom:
             print(classe)
@@ -145,7 +148,7 @@ def list_assignment_interface():
         for assignment in data["assignments"]:
             assignment_names = json.load(assignment["name"])
             assignment_names_list.append(assignment_names)
-
+    
     print(assignment_names_list)
     
 main()

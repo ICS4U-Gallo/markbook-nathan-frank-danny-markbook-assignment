@@ -7,6 +7,7 @@ def main():
         print("Type 'classroom' if you want to create a classroom")
         print("Type 'list' if you want to list the classrooms")
         print("Type 'assignment' if you want to create an assignment")
+        print("Type 'assignmentlist' if you want to create an assignment")
         print("Type 'exit' if you want to exit")
 
         # Gets input from user for which menu option to go into

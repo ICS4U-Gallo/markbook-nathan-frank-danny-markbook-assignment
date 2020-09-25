@@ -22,6 +22,8 @@ def main():
             list_classrooms_interface()
         elif choice == "assignment":
             create_assignment_interface()
+        elif choice == "assignmentlist":
+            list_assignment_interface()
         elif choice == "exit":
             exit()
         else:

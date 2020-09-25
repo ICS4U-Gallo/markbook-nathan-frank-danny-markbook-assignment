@@ -4,10 +4,10 @@ import json
 # Main Function
 def main():
     while True:
+        print("\n")
         print("Type 'classroom' if you want to create a classroom")
         print("Type 'list' if you want to list the classrooms")
         print("Type 'assignment' if you want to create an assignment")
-        print("Type 'assignmentlist' if you want to create an assignment")
         print("Type 'exit' if you want to exit")
 
         # Gets input from user for which menu option to go into
@@ -23,8 +23,6 @@ def main():
             list_classrooms_interface()
         elif choice == "assignment":
             create_assignment_interface()
-        elif choice == "assignmentlist":
-            list_assignment_interface()
         elif choice == "exit":
             exit()
         else:
@@ -51,10 +49,10 @@ def add_to_data(file_name, list_name, data_to_add):
 def create_classroom_interface():
     while True:
         try:
-            course_code = input("Course Code:  ")
-            course_name = input("Course Name:  ")
-            period = int(input("Period:  "))
-            teacher = input("Teacher Name:  ")
+            course_code = input("\nCourse Code:  ")
+            course_name = input("\nCourse Name:  ")
+            period = int(input("\nPeriod:  "))
+            teacher = input("\nTeacher Name:  ")
             break
         except ValueError:
             print("Error, please enter a string")
@@ -68,11 +66,26 @@ def list_classrooms_interface():
     classrooms_names = []
     
     with open("data.json", "r") as data:
+        data = json.load(data)
         for classroom in data["classrooms"]:
-            course_names = json.load(classroom["course_name"])
+            course_names = classroom["course_name"]
             classrooms_names.append(course_names)
 
-    print(classrooms_names)
+    print("\nYour Classes:  ")
+    print(*classrooms_names, sep=", ")
+
+    print("\nType the name of the class(course name) you want to view")
+    print("Or type exit to exit the program")
+
+    try:
+        classroom = input("\nPlease enter the name of the class you want to view(Case Sensitive):  ")
+    except ValueError:
+        print("Error, please enter a string")
+
+    for classe in data["classrooms"]:
+        if classe["course_name"] == classroom:
+            print(classe)
+            break
 
 def create_assignment_interface():
     while True:

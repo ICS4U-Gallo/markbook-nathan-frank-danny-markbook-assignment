@@ -21,7 +21,6 @@ def main():
         print('| Type "classroom" if you want to create a classroom.      |')
         print('| Type "list" if you want to list the classrooms.          |')
         print('| Type "assignment" if you want to create an assignment.   |')
-        print('| Type "assignments" if you want to list the assignments.  |')
         print('| Type "exit" if you want to exit.                         |')
         print(" ---------------------------------------------------------- ")
         # Gets input from user for which menu option to go into
@@ -55,12 +54,6 @@ def main():
             print("|                      NEW ASSIGNMENT                      |")
             print(" ---------------------------------------------------------- ")
             create_assignment_interface()
-        elif choice == "assignments":
-            clear()
-            print(" ---------------------------------------------------------- ")
-            print("|                      ASSIGNMENT(S)                       |")
-            print(" ---------------------------------------------------------- ")
-            list_assignment_interface()
         elif choice == "exit":
             clear()
             print(" ---------------------------------------------------------- ")
@@ -127,6 +120,9 @@ def list_classrooms_interface():
     except ValueError:
         print("Error, please enter a string")
 
+    if classroom = "exit":
+        exit()
+
     for classe in data["classrooms"]:
         if classe["course_name"] == classroom:
             print(classe)
@@ -167,6 +163,9 @@ def list_assignment_interface():
     except ValueError:
         print("Error, please enter a string")
 
+    if assignment == "exit":
+        exit()
+        
     for assignment_info in data["assignments"]:
         if assignment_info["name"] == assignment:
             print(assignment_info)

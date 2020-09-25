@@ -6,7 +6,15 @@
             "period": 2,
             "teacher": "Gallo",
             "student_list": [],
-            "assignment_list": [] 
+            "assignment_list": []
+        },
+        {
+            "course_code": "MCV4U1",
+            "course_name": "Calculus & Vectors",
+            "period": 1,
+            "teacher": "Zmak",
+            "student_list": [],
+            "assignment_list": []
         }
     ],
     "assignments": [

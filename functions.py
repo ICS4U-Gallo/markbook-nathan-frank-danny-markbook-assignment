@@ -1,5 +1,16 @@
 import markbook
 import json
+from os import system, name 
+from time import sleep 
+def clear(): 
+  
+    # windows 
+    if name == 'nt': 
+        empty_screen = system('cls') 
+  
+    # mac and linux
+    else: 
+        empty_screen = system('clear') 
 
 # Main Function
 def main():
@@ -21,18 +32,39 @@ def main():
             print(" ---------------------------------------------------------- ")
             print("| Error, Please enter a string.                            |")
             print(" ---------------------------------------------------------- ")
+            sleep(3) 
+            clear()
         
         # Handles which function to run depending on the user input
         if choice == "classroom":
+            clear()
+            print(" ---------------------------------------------------------- ")
+            print("|                     CREATE CLASSROOM                     |")
+            print(" ---------------------------------------------------------- ")
             create_classroom_interface()
         elif choice == "list":
+            clear()
+            print(" ---------------------------------------------------------- ")
+            print("|                       CLASSROOM(S)                       |")
+            print(" ---------------------------------------------------------- ")
             list_classrooms_interface()
         elif choice == "assignment":
+            clear()
+            print(" ---------------------------------------------------------- ")
+            print("|                      NEW ASSIGNMENT                      |")
+            print(" ---------------------------------------------------------- ")
             create_assignment_interface()
         elif choice == "exit":
+            clear()
+            print(" ---------------------------------------------------------- ")
+            print("|                    THANK YOU FOR USING                   |")
+            print(" ---------------------------------------------------------- ")
             exit()
         else:
-            print("Please enter a vaid choice")
+            clear()
+            print(" ---------------------------------------------------------- ")
+            print("|                   ERROR: INVALID CHOICE                  |")
+            print(" ---------------------------------------------------------- ")
 
 # Function for adding data to data.jsonfile
 def add_to_data(file_name, list_name, data_to_add):

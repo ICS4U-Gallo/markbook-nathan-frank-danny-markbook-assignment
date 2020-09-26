@@ -100,10 +100,10 @@ def add_to_data(file_name, list_name, data_to_add):
 def create_classroom_interface():
     while True:
         try:
-            course_code = input("\nCourse Code:  ")
-            course_name = input("\nCourse Name:  ")
-            period = int(input("\nPeriod:  "))
-            teacher = input("\nTeacher Name:  ")
+            course_code = input("\n* Course Code:  ")
+            course_name = input("\n* Course Name:  ")
+            period = int(input("\n* Period:  "))
+            teacher = input("\n* Teacher Name:  ")
             break
         except ValueError:
             print(" ---------------------------------------------------------- ")
@@ -125,16 +125,18 @@ def list_classrooms_interface():
             course_names = classroom["course_name"]
             classrooms_names.append(course_names)
 
-    print("\nYour Classes:  ")
+    print("\n* Your Classes:  ")
     print(*classrooms_names, sep=", ")
 
     print("\nType the name of the class(course name) you want to view")
     print("Or type exit to exit the program")
 
     try:
-        classroom = input("\nPlease enter the name of the class you want to view(Case Sensitive):  ")
+        classroom = input("\n* Please enter the name of the class you want to view(Case Sensitive):  ")
     except ValueError:
-        print("Error, please enter a string")
+        print(" ---------------------------------------------------------- ")
+        print("| Error, please enter a string.                            |")
+        print(" ---------------------------------------------------------- ")
 
     if classroom = "exit":
         exit()

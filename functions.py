@@ -106,7 +106,10 @@ def create_classroom_interface():
             teacher = input("\nTeacher Name:  ")
             break
         except ValueError:
-            print("Error, please enter a string")
+            print(" ---------------------------------------------------------- ")
+            print("| Error, please enter a string.                            |")
+            print(" ---------------------------------------------------------- ")
+
 
     classroom = markbook.create_classroom(course_code, course_name, period, teacher)
     

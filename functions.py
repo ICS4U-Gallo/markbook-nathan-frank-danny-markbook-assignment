@@ -1,3 +1,7 @@
+""" From Tianyu (GamingFrankie): I got a family activity this afternoon so I am not able to attend to group meeting (if there is any)...
+    Please just delete this message if anyone see it after 3 pm.
+"""
+
 import markbook
 import json
 from os import system, name 
@@ -31,7 +35,7 @@ def main():
             print()
         except ValueError:
             print(" ---------------------------------------------------------- ")
-            print("| Error, Please enter a string.                            |")
+            print("| Error, please enter a string.                            |")
             print(" ---------------------------------------------------------- ")
             sleep(3) 
             clear()
@@ -79,7 +83,9 @@ def add_to_data(file_name, list_name, data_to_add):
         with open(file_name, "r") as reader:  
             data = json.loads(reader.read())    # Stores the data file into a variable
     except FileNotFoundError:
-        print("Error, data.json file was not found")
+        print(" ---------------------------------------------------------- ")
+        print("| Error, file was not found.                               |")
+        print(" ---------------------------------------------------------- ")
     
     # Appends the data into the specified json object's list
     data[list_name].append(data_to_add)
@@ -145,7 +151,7 @@ def create_assignment_interface():
             break
         except ValueError:
             print(" ---------------------------------------------------------- ")
-            print("| Error, Please enter a string.                            |")
+            print("| Error, please enter a string.                            |")
             print(" ---------------------------------------------------------- ")
 
         assignment = markbook.create_assignment(name, due, points)

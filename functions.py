@@ -179,15 +179,19 @@ def list_assignment_interface():
     print("\nYour Assignments:  ")
     print(names)
 
-    print("\nType the name of the assignment you want to view")
-    print("Or type exit to exit the program")
+    print("\n* Type the name of the assignment you want to view,")
+    print("* Or type exit to exit the program.")
 
     try:
-        assignment = input("\nPlease enter the name of the assignment you want to view(Case Sensitive):  ")
+        assignment = input("\n* Please enter the name of the assignment you want to view (Case Sensitive):  ")
     except ValueError:
-        print("Error, please enter a string")
+        print(" ---------------------------------------------------------- ")
+        print("| Error, please enter a string.                            |")
+        print(" ---------------------------------------------------------- ")
 
     if assignment == "exit":
+        sleep(3)
+        clear()
         exit()
         
     for assignment_info in data["assignments"]:

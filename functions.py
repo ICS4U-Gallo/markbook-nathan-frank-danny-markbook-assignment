@@ -1,5 +1,6 @@
 """ From Tianyu (GamingFrankie): I got a family activity this afternoon so I am not able to attend to group meeting (if there is any)...
     Please just delete this message if anyone see it after 3 pm.
+    So What I want to do is to improve the UI, please note that I add a "*" mark in front of input()s and some print()s to be something like a "notification."
 """
 
 import markbook

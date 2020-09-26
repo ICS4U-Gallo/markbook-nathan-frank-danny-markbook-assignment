@@ -31,7 +31,7 @@ def main():
         # Gets input from user for which menu option to go into
         try:
             print()
-            choice = input("Select a menu option:   ").lower()
+            choice = input("* Select a menu option:   ").lower()
             print()
         except ValueError:
             print(" ---------------------------------------------------------- ")

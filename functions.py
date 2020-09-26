@@ -6,19 +6,21 @@
 
 import markbook
 import json
-from os import system, name 
-from time import sleep 
-def clear(): 
-  
-    # windows 
-    if name == 'nt': 
-        empty_screen = system('cls') 
-  
-    # mac and linux
-    else: 
-        empty_screen = system('clear') 
+from os import system, name
+from time import sleep
 
-# Main Function
+def clear():
+    # windows
+    if name == 'nt':
+        empty_screen = system('cls')
+
+        # mac and linux
+    else:
+        empty_screen = system('clear')
+
+    # Main Function
+
+
 def main():
     while True:
         print(" ---------------------------------------------------------- ")
@@ -39,9 +41,9 @@ def main():
             print(" ---------------------------------------------------------- ")
             print("| Error, please enter a string.                            |")
             print(" ---------------------------------------------------------- ")
-            sleep(3) 
+            sleep(3)
             clear()
-        
+
         # Handles which function to run depending on the user input
         if choice == "classroom":
             clear()
@@ -79,16 +81,17 @@ def main():
             print("|                   ERROR: INVALID CHOICE                  |")
             print(" ---------------------------------------------------------- ")
 
+
 # Function for adding data to data.jsonfile
 def add_to_data(file_name, list_name, data_to_add):
     try:
-        with open(file_name, "r") as reader:  
-            data = json.loads(reader.read())    # Stores the data file into a variable
+        with open(file_name, "r") as reader:
+            data = json.loads(reader.read())  # Stores the data file into a variable
     except FileNotFoundError:
         print(" ---------------------------------------------------------- ")
         print("| Error, file was not found.                               |")
         print(" ---------------------------------------------------------- ")
-    
+
     # Appends the data into the specified json object's list
     data[list_name].append(data_to_add)
 
@@ -112,15 +115,14 @@ def create_classroom_interface():
             print("| Error, please enter a string.                            |")
             print(" ---------------------------------------------------------- ")
 
-
     classroom = markbook.create_classroom(course_code, course_name, period, teacher)
-    
+
     add_to_data("data.json", "classrooms", classroom)
 
 
 def list_classrooms_interface():
     classrooms_names = []
-    
+
     with open("data.json", "r") as data:
         data = json.load(data)
         for classroom in data["classrooms"]:
@@ -140,7 +142,7 @@ def list_classrooms_interface():
         print("| Error, please enter a string.                            |")
         print(" ---------------------------------------------------------- ")
 
-    if classroom = "exit":
+    if classroom == "exit":
         sleep(3)
         clear()
         exit()
@@ -163,8 +165,9 @@ def create_assignment_interface():
             print("| Error, please enter a string.                            |")
             print(" ---------------------------------------------------------- ")
 
-        assignment = markbook.create_assignment(name, due, points)
-        add_to_data("data.json", "assignments", assignment)
+    assignment = markbook.create_assignment(name, due, points)
+
+    add_to_data("data.json", "assignments", assignment)
 
 
 def list_assignment_interface():
@@ -177,7 +180,7 @@ def list_assignment_interface():
             assignment_names.append(names)
 
     print("\nYour Assignments:  ")
-    print(names)
+    print(*assignment_names, sep=", ")
 
     print("\n* Type the name of the assignment you want to view,")
     print("* Or type exit to exit the program.")
@@ -193,10 +196,11 @@ def list_assignment_interface():
         sleep(3)
         clear()
         exit()
-        
+
     for assignment_info in data["assignments"]:
         if assignment_info["name"] == assignment:
             print(assignment_info)
             break
-    
+
+
 main()

@@ -1,8 +1,3 @@
-""" From Tianyu (GamingFrankie): I got a family activity this afternoon so I am not able to attend to group meeting (if there is any)...
-    Please just delete this message if anyone see it after 3 pm.
-    So What I want to do is to improve the UI, please note that I add a "*" mark in front of input()s and some print()s
-    to be something like a "notification."
-"""
 
 import markbook
 import json
@@ -14,12 +9,12 @@ def clear():
     if name == 'nt':
         empty_screen = system('cls')
 
-        # mac and linux
+    # mac and linux
     else:
         empty_screen = system('clear')
 
+        
     # Main Function
-
 
 def main():
     while True:
@@ -201,6 +196,5 @@ def list_assignment_interface():
         if assignment_info["name"] == assignment:
             print(assignment_info)
             break
-
-
+            
 main()

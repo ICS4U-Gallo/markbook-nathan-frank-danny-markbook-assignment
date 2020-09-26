@@ -1,6 +1,7 @@
 """ From Tianyu (GamingFrankie): I got a family activity this afternoon so I am not able to attend to group meeting (if there is any)...
     Please just delete this message if anyone see it after 3 pm.
-    So What I want to do is to improve the UI, please note that I add a "*" mark in front of input()s and some print()s to be something like a "notification."
+    So What I want to do is to improve the UI, please note that I add a "*" mark in front of input()s and some print()s
+    to be something like a "notification."
 """
 
 import markbook
@@ -129,17 +130,19 @@ def list_classrooms_interface():
     print("\n* Your Classes:  ")
     print(*classrooms_names, sep=", ")
 
-    print("\nType the name of the class(course name) you want to view")
-    print("Or type exit to exit the program")
+    print("\n* Type the name of the class(course name) you want to view,")
+    print("* Or type exit to exit the program.")
 
     try:
-        classroom = input("\n* Please enter the name of the class you want to view(Case Sensitive):  ")
+        classroom = input("\n* Please enter the name of the class you want to view (Case Sensitive):  ")
     except ValueError:
         print(" ---------------------------------------------------------- ")
         print("| Error, please enter a string.                            |")
         print(" ---------------------------------------------------------- ")
 
     if classroom = "exit":
+        sleep(3)
+        clear()
         exit()
 
     for classe in data["classrooms"]:
@@ -151,9 +154,9 @@ def list_classrooms_interface():
 def create_assignment_interface():
     while True:
         try:
-            name = input("Assignment Name: ")
-            due = input("due: ")
-            points = int(input("points: "))
+            name = input("* Assignment Name: ")
+            due = input("* Due Date: ")
+            points = int(input("* Total Score: "))
             break
         except ValueError:
             print(" ---------------------------------------------------------- ")

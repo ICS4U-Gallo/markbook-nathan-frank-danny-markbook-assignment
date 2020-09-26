@@ -144,7 +144,9 @@ def create_assignment_interface():
             points = int(input("points: "))
             break
         except ValueError:
-            print("Error, please enter a string")
+            print(" ---------------------------------------------------------- ")
+            print("| Error, Please enter a string.                            |")
+            print(" ---------------------------------------------------------- ")
 
         assignment = markbook.create_assignment(name, due, points)
         add_to_data("data.json", "assignments", assignment)

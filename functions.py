@@ -106,7 +106,6 @@ def add_to_data(file_name, list_name, data_to_add):
 
 # Function for creating a classroom
 def create_classroom_interface():
-
     while True:
         # Takes input from user
         try:
@@ -156,8 +155,8 @@ def list_classrooms_interface():
         exit()
 
 
-    for classroom in data["classrooms"]:
-        if classroom["course_name"] == choice_classroom:
+    for classroom in data["classrooms"]:    # Iterates through classroom list in data file
+        if classroom["course_name"] == choice_classroom:    # If the iteration reaches the user input's specifictation, then print out that classroom's info
             print(classroom)
             break
 

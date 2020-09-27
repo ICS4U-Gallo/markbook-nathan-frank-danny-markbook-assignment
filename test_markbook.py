@@ -45,7 +45,7 @@ def test_calculate_average_mark():
     }
     assert markbook.calculate_average_mark(student) == 75.0
 
-
+@pytest.mark.skip
 def test_add_student_to_classroom():
     """
     Dependencies:

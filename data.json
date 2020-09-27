@@ -21,7 +21,7 @@
       {
           "name": "Abc",
           "due": "January 1",
-          "points": "100"
+          "points": 100
       }
     ]
 }

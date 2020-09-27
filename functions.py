@@ -4,6 +4,7 @@ import json
 from os import system, name
 from time import sleep
 
+# Clears terminal
 def clear():
     # windows
     if name == 'nt':
@@ -101,8 +102,11 @@ def add_to_data(file_name, list_name, data_to_add):
         writer.write(data)
 
 
+# Function for creating a classroom
 def create_classroom_interface():
+
     while True:
+        # Takes input from user
         try:
             course_code = input("\n* Course Code:  ")
             course_name = input("\n* Course Name:  ")
@@ -114,17 +118,20 @@ def create_classroom_interface():
             print("| Error, please enter a string.                            |")
             print(" ---------------------------------------------------------- ")
 
+    # Gets data back from API function
     classroom = markbook.create_classroom(course_code, course_name, period, teacher)
 
+    # Send the data to be added to the data file
     add_to_data("data.json", "classrooms", classroom)
 
 
+# Function for listing the classrooms
 def list_classrooms_interface():
     classrooms_names = []
 
     with open("data.json", "r") as data:
         data = json.loads(data.read())
-        for classroom in data["classrooms"]:
+        for classroom in data["classrooms"]:    # Iterates through the data file to list the classroom names
             course_names = classroom["course_name"]
             classrooms_names.append(course_names)
 
@@ -135,7 +142,7 @@ def list_classrooms_interface():
     print("* Or type exit to exit the program.")
 
     try:
-        classroom = input("\n* Please enter the name of the class you want to view (Case Sensitive):  ")
+        choice_classroom = input("\n* Please enter the name of the class you want to view (Case Sensitive):  ")    # Takes input from user
     except ValueError:
         print(" ---------------------------------------------------------- ")
         print("| Error, please enter a string.                            |")
@@ -146,9 +153,10 @@ def list_classrooms_interface():
         clear()
         exit()
 
-    for classe in data["classrooms"]:
-        if classe["course_name"] == classroom:
-            print(classe)
+
+    for classroom in data["classrooms"]:
+        if classroom["course_name"] == choice_classroom:
+            print(classroom)
             break
 
 
@@ -227,6 +235,7 @@ def add_student_to_classroom_interface():
         except ValueError:
             print("Error, please enter the correct form, either a number or a word")
 
+    print("ok")
     student = {
         "first_name": first_name,
         "last_name": last_name,
@@ -240,17 +249,22 @@ def add_student_to_classroom_interface():
 
     for classroom in data["classrooms"]:
         if choice_classroom == classroom["course_name"]:
+            print("ook")
             added_student = markbook.add_student_to_classroom(student, classroom)
+            # with open("data.json", "r") as f:
+            #     data = json.loads(f.read())
             
             classroom = added_student
 
+            
             with open("data.json", "w") as writer:
                 # Converts the python into json strings
                 data = json.dumps(data, indent=4)
                 # Overwrite the current data with the new added on data
                 writer.write(data) 
             break
-
+        else:
+            print("bruh")
 
 
 main()

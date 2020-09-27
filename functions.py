@@ -229,11 +229,11 @@ def add_student_to_classroom_interface():
             first_name = input("* What is the student's first name?  ")
             last_name = input("* What is the student's last name?    ")
             gender = input("* What is the student's gender?   ")
-            student_number = int(input("What is the student's student number?   "))
-            grade = int(input("What is the student's current grade?   "))
-            email = input("What is the student's email?    ")
-            marks = list(map(int, input("What is the student's marks?  ").split()))
-            comments = input("What comments do you have for this student?   ")
+            student_number = int(input("* What is the student's student number?   "))
+            grade = int(input("* What is the student's current grade?   "))
+            email = input("* What is the student's email?    ")
+            marks = list(map(int, input("* What is the student's marks?  ").split()))
+            comments = input("* What comments do you have for this student?   ")
             break
         except ValueError:
             print("Error, please enter the correct form, either a number or a word")

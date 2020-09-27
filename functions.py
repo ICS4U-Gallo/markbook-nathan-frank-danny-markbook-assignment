@@ -187,7 +187,7 @@ def list_assignment_interface():
             names = assignment["name"]
             assignment_names.append(names)
 
-    print("\nYour Assignments:  ")
+    print("\n* Your Assignments:  ")
     print(*assignment_names, sep=", ")
 
     print("\n* Type the name of the assignment you want to view,")
@@ -225,10 +225,10 @@ def add_student_to_classroom_interface():
     while True:
         # Takes input from user 
         try:
-            choice_classroom = input("\n Which class would you like to add a student to?(Course name) ")
-            first_name = input("What is the student's first name?  ")
-            last_name = input("What is the student's last name?    ")
-            gender = input("What is the student's gender?   ")
+            choice_classroom = input("\* n Which class would you like to add a student to? (Course name) ")
+            first_name = input("* What is the student's first name?  ")
+            last_name = input("* What is the student's last name?    ")
+            gender = input("* What is the student's gender?   ")
             student_number = int(input("What is the student's student number?   "))
             grade = int(input("What is the student's current grade?   "))
             email = input("What is the student's email?    ")

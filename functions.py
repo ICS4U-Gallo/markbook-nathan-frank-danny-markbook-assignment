@@ -25,6 +25,7 @@ def main():
         print('| Type "list" if you want to list the classrooms.          |')
         print('| Type "assignment" if you want to create an assignment.   |')
         print('| Type "assignments" if you want to list the assignments.  |')
+        print('Type "add student" if you want to add a student to a class.   ')
         print('| Type "exit" if you want to exit.                         |')
         print(" ---------------------------------------------------------- ")
         # Gets input from user for which menu option to go into
@@ -64,6 +65,9 @@ def main():
             print("|                      ASSIGNMENT(S)                       |")
             print(" ---------------------------------------------------------- ")
             list_assignment_interface()
+        elif choice == "add student":
+            clear()
+            add_student_to_classroom_interface()
         elif choice == "exit":
             clear()
             print(" ---------------------------------------------------------- ")
@@ -119,7 +123,7 @@ def list_classrooms_interface():
     classrooms_names = []
 
     with open("data.json", "r") as data:
-        data = json.load(data)
+        data = json.loads(data.read())
         for classroom in data["classrooms"]:
             course_names = classroom["course_name"]
             classrooms_names.append(course_names)
@@ -169,7 +173,7 @@ def list_assignment_interface():
     assignment_names = []
 
     with open("data.json", "r") as data:
-        data = json.load(data)
+        data = json.load(data.read())
         for assignment in data["assignments"]:
             names = assignment["name"]
             assignment_names.append(names)
@@ -197,4 +201,56 @@ def list_assignment_interface():
             print(assignment_info)
             break
             
+def add_student_to_classroom_interface():
+    classrooms_names = []
+
+    with open("data.json", "r") as data:
+        data = json.loads(data.read())
+        for classroom in data["classrooms"]:
+            course_names = classroom["course_name"]
+            classrooms_names.append(course_names)
+
+    print(*classrooms_names, sep=", ")
+
+    while True:
+        try:
+            choice_classroom = input("\n Which class would you like to add a student to?(Course name) ")
+            first_name = input("What is the student's first name?  ")
+            last_name = input("What is the student's last name?    ")
+            gender = input("What is the student's gender?   ")
+            student_number = int(input("What is the student's student number?   "))
+            grade = int(input("What is the student's current grade?   "))
+            email = input("What is the student's email?    ")
+            marks = list(map(int, input("What is the student's marks?  ").split()))
+            comments = input("What comments do you have for this student?   ")
+            break
+        except ValueError:
+            print("Error, please enter the correct form, either a number or a word")
+
+    student = {
+        "first_name": first_name,
+        "last_name": last_name,
+        "gender": gender,
+        "student_number": student_number,
+        "grade": grade,
+        "email": email,
+        "marks": marks,
+        "comments": comments
+    }
+
+    for classroom in data["classrooms"]:
+        if choice_classroom == classroom["course_name"]:
+            added_student = markbook.add_student_to_classroom(student, classroom)
+            
+            classroom = added_student
+
+            with open("data.json", "w") as writer:
+                # Converts the python into json strings
+                data = json.dumps(data, indent=4)
+                # Overwrite the current data with the new added on data
+                writer.write(data) 
+            break
+
+
+
 main()

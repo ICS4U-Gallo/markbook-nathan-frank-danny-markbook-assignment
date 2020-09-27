@@ -57,7 +57,7 @@ def add_student_to_classroom(student: Dict, classroom: Dict):
     students = classroom["student_list"]
     students.append(student)    # Append the student dictionary into the student list inside the classroom dictionary
 
-    return student
+    return students
 
 
 def remove_student_from_classroom(student: Dict, classroom: Dict):

@@ -15,19 +15,18 @@ def clear():
         empty_screen = system('clear')
 
         
-    # Main Function
-
+# Main Function
 def main():
     while True:
         print(" ---------------------------------------------------------- ")
         print("|                         MARKBOOK                         |")
         print(" ---------------------------------------------------------- ")
-        print('| Type "create classroom" if you want to create a classroom.      |')
-        print('| Type "list classrooms" if you want to list the classrooms.          |')
-        print('| Type "create assignment" if you want to create an assignment.   |')
-        print('| Type "list assignments" if you want to list the assignments.  |')
-        print('Type "add student" if you want to add a student to a class.   ')
-        print('| Type "exit" if you want to exit.                         |')
+        print('| Type "create classroom" if you want to create a classroom.   |')
+        print('| Type "list classrooms" if you want to list the classrooms.   |')
+        print('| Type "create assignment" if you want to create an assignment.|')
+        print('| Type "list assignments" if you want to list the assignments. |')
+        print('Type "add student" if you want to add a student to a class.    |')
+        print('| Type "exit" if you want to exit.                             |')
         print(" ---------------------------------------------------------- ")
         # Gets input from user for which menu option to go into
         try:
@@ -266,6 +265,3 @@ def add_student_to_classroom_interface():
                 # Overwrite the current data with the new added on data
                 writer.write(data) 
             break
-
-if __name__ == "__main__":
-    main()

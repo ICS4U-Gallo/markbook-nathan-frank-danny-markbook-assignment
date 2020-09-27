@@ -5,7 +5,21 @@
             "course_name": "Computer Science",
             "period": 2,
             "teacher": "Gallo",
-            "student_list": [],
+            "student_list": [
+                {
+                    "first_name": "Danny",
+                    "last_name": "Lu",
+                    "gender": "male",
+                    "student_number": 123,
+                    "grade": 12,
+                    "email": "dan",
+                    "marks": [
+                        100,
+                        90
+                    ],
+                    "comments": "no"
+                }
+            ],
             "assignment_list": []
         },
         {
@@ -18,10 +32,10 @@
         }
     ],
     "assignments": [
-      {
-          "name": "Abc",
-          "due": "January 1",
-          "points": 100
-      }
+        {
+            "name": "Abc",
+            "due": "January 1",
+            "points": 100
+        }
     ]
 }

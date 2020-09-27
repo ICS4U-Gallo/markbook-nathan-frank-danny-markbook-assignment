@@ -22,10 +22,10 @@ def main():
         print(" ---------------------------------------------------------- ")
         print("|                         MARKBOOK                         |")
         print(" ---------------------------------------------------------- ")
-        print('| Type "classroom" if you want to create a classroom.      |')
-        print('| Type "list" if you want to list the classrooms.          |')
-        print('| Type "assignment" if you want to create an assignment.   |')
-        print('| Type "assignments" if you want to list the assignments.  |')
+        print('| Type "create classroom" if you want to create a classroom.      |')
+        print('| Type "list classrooms" if you want to list the classrooms.          |')
+        print('| Type "create assignment" if you want to create an assignment.   |')
+        print('| Type "list assignments" if you want to list the assignments.  |')
         print('Type "add student" if you want to add a student to a class.   ')
         print('| Type "exit" if you want to exit.                         |')
         print(" ---------------------------------------------------------- ")
@@ -42,32 +42,35 @@ def main():
             clear()
 
         # Handles which function to run depending on the user input
-        if choice == "classroom":
+        if choice == "create classroom" or choice == "create classrooms":
             clear()
             print(" ---------------------------------------------------------- ")
             print("|                     CREATE CLASSROOM                     |")
             print(" ---------------------------------------------------------- ")
             create_classroom_interface()
-        elif choice == "list":
+        elif choice == "list classrooms" or choice == "list classroom":
             clear()
             print(" ---------------------------------------------------------- ")
             print("|                       CLASSROOM(S)                       |")
             print(" ---------------------------------------------------------- ")
             list_classrooms_interface()
-        elif choice == "assignment":
+        elif choice == "create assignment" or choice == "create assignments":
             clear()
             print(" ---------------------------------------------------------- ")
             print("|                      NEW ASSIGNMENT                      |")
             print(" ---------------------------------------------------------- ")
             create_assignment_interface()
-        elif choice == "assignments":
+        elif choice == "list assignments" or choice == "list assignment":
             clear()
             print(" ---------------------------------------------------------- ")
             print("|                      ASSIGNMENT(S)                       |")
             print(" ---------------------------------------------------------- ")
             list_assignment_interface()
-        elif choice == "add student":
+        elif choice == "add student" or choice == "add students":
             clear()
+            print(" ---------------------------------------------------------- ")
+            print("|                     ADD STUDENT                          |")
+            print(" ---------------------------------------------------------- ")
             add_student_to_classroom_interface()
         elif choice == "exit":
             clear()
@@ -208,19 +211,21 @@ def list_assignment_interface():
         if assignment_info["name"] == assignment:
             print(assignment_info)
             break
-            
+
+# Function for adding students to a classroom    
 def add_student_to_classroom_interface():
     classrooms_names = []
 
-    with open("data.json", "r") as data:
+    with open("data.json", "r") as data:    
         data = json.loads(data.read())
-        for classroom in data["classrooms"]:
+        for classroom in data["classrooms"]:    # Iterates through classroom to print out all classroom names
             course_names = classroom["course_name"]
             classrooms_names.append(course_names)
 
     print(*classrooms_names, sep=", ")
 
     while True:
+        # Takes input from user 
         try:
             choice_classroom = input("\n Which class would you like to add a student to?(Course name) ")
             first_name = input("What is the student's first name?  ")
@@ -235,7 +240,7 @@ def add_student_to_classroom_interface():
         except ValueError:
             print("Error, please enter the correct form, either a number or a word")
 
-    print("ok")
+    # Dictionary for an individual student
     student = {
         "first_name": first_name,
         "last_name": last_name,
@@ -247,15 +252,14 @@ def add_student_to_classroom_interface():
         "comments": comments
     }
 
+
     for classroom in data["classrooms"]:
         if choice_classroom == classroom["course_name"]:
-            print("ook")
+            # Gets data from the API function
             added_student = markbook.add_student_to_classroom(student, classroom)
-            # with open("data.json", "r") as f:
-            #     data = json.loads(f.read())
             
+            # Set the classroom as the data returned from the API
             classroom = added_student
-
             
             with open("data.json", "w") as writer:
                 # Converts the python into json strings

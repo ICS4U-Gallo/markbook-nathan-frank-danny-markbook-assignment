@@ -236,7 +236,9 @@ def add_student_to_classroom_interface():
             comments = input("* What comments do you have for this student?   ")
             break
         except ValueError:
-            print("Error, please enter the correct form, either a number or a word")
+            print(" ---------------------------------------------------------- ")
+            print("| Error, expected: a number or a word.                     |")
+            print(" ---------------------------------------------------------- ")
 
     # Dictionary for an individual student
     student = {

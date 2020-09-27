@@ -1,5 +1,5 @@
 
-import markbook
+from markbook import create_classroom, create_assignment, calculate_average_mark, add_student_to_classroom, remove_student_from_classroom, edit_student
 import json
 from os import system, name
 from time import sleep
@@ -122,7 +122,7 @@ def create_classroom_interface():
             print(" ---------------------------------------------------------- ")
 
     # Gets data back from API function
-    classroom = markbook.create_classroom(course_code, course_name, period, teacher)
+    classroom = create_classroom(course_code, course_name, period, teacher)
 
     # Send the data to be added to the data file
     add_to_data("data.json", "classrooms", classroom)
@@ -175,7 +175,7 @@ def create_assignment_interface():
             print("| Error, please enter a string.                            |")
             print(" ---------------------------------------------------------- ")
 
-    assignment = markbook.create_assignment(name, due, points)
+    assignment = create_assignment(name, due, points)
 
     add_to_data("data.json", "assignments", assignment)
 
@@ -252,11 +252,10 @@ def add_student_to_classroom_interface():
         "comments": comments
     }
 
-
-    for classroom in data["classrooms"]:
-        if choice_classroom == classroom["course_name"]:
+    for classroom in data["classrooms"]:        # Iterate through the data files classroom
+        if choice_classroom == classroom["course_name"]:    # Check to see if the user's selected classroom is the current iteration
             # Gets data from the API function
-            added_student = markbook.add_student_to_classroom(student, classroom)
+            added_student = add_student_to_classroom(student, classroom)
             
             # Set the classroom as the data returned from the API
             classroom = added_student

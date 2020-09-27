@@ -263,8 +263,6 @@ def add_student_to_classroom_interface():
                 # Overwrite the current data with the new added on data
                 writer.write(data) 
             break
-        else:
-            print("bruh")
 
-
-main()
+if __name__ == "__main__":
+    main()

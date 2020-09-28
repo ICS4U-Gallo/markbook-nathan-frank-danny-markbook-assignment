@@ -27,7 +27,6 @@ def main():
         print('| Type "create assignment" to create a assignment.         |')
         print('| Type "list assignments" to list out assignments.         |')
         print('| Type "add student" to add student(s).                    |')
-        print('| Type "remove student" to remove student(s).              |')
         print('| Type "exit" if you want to exit.                         |')
         print(" ---------------------------------------------------------- ")
         # Gets input from user for which menu option to go into
@@ -73,12 +72,6 @@ def main():
             print("|                         ADD STUDENT                      |")
             print(" ---------------------------------------------------------- ")
             add_student_to_classroom_interface()
-        elif choice == "remove student" or choice == "remove students":
-            clear()
-            print(" ---------------------------------------------------------- ")
-            print("|                       REMOVE STUDENT(S)                  |")
-            print(" ---------------------------------------------------------- ")
-            remove_student_to_classroom_interface()
         elif choice == "exit":
             clear()
             print(" ---------------------------------------------------------- ")
@@ -304,41 +297,3 @@ def add_student_to_classroom_interface():
             break
 
 
-def remove_student_to_classroom_interface():
-    classrooms_names = []
-
-    with open("data.json", "r") as data:
-        data = json.loads(data.read())
-        for classroom in data["classrooms"]:  # Iterates through classroom to print out all classroom names
-            course_names = classroom["course_name"]
-            classrooms_names.append(course_names)
-
-    print(*classrooms_names, sep=", ")
-
-    while True:
-        try:
-            #  Takes user input
-            desired_classroom = input("* Which Classroom: ")
-            student_name = input("* Which Student to remove: ")
-
-            break
-        except ValueError:
-            print(" ---------------------------------------------------------- ")
-            print("| Error, please enter a string.                            |")
-            print(" ---------------------------------------------------------- ")
-
-    for classroom in data["classrooms"]:  # Iterate through the data files classroom
-        if desired_classroom == classroom["course_name"]:  # Check to see if the user's selected classroom is the 
-            # current iteration 
-            for names in classroom["student_list"]:  # Iterates through student list to find specified student to remove
-                if student_name == names:
-                    # Gets data from the API function
-                    removed_student = remove_student_from_classroom(name, classroom)
-                    classroom = removed_student
-
-            with open("data.json", "w") as writer:
-                # Converts the python into json strings
-                data = json.dumps(data, indent=4)
-                # Overwrite the current data with the new added on data
-                writer.write(data)
-            break

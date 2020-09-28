@@ -22,13 +22,13 @@ def main():
         print(" ---------------------------------------------------------- ")
         print("|                         MARKBOOK                         |")
         print(" ---------------------------------------------------------- ")
-        print('| Type "create classroom" if you want to create a classroom.   |')
-        print('| Type "list classrooms" if you want to list the classrooms.   |')
-        print('| Type "create assignment" if you want to create an assignment.|')
-        print('| Type "list assignments" if you want to list the assignments. |')
-        print('| Type "add student" if you want to add a student to a class.  |')
-        print('| Type "remove student" to remove a student from a class.      |')
-        print('| Type "exit" if you want to exit.                             |')
+        print('| Type "create classroom" to create a classroom.           |')
+        print('| Type "list classrooms" to list existed classrooms.       |')
+        print('| Type "create assignment" to create a assignment.         |')
+        print('| Type "list assignments" to list out assignments.         |')
+        print('| Type "add student" to add student(s).                    |')
+        print('| Type "remove student" to remove student(s).              |')
+        print('| Type "exit" if you want to exit.                         |')
         print(" ---------------------------------------------------------- ")
         # Gets input from user for which menu option to go into
         try:
@@ -46,37 +46,37 @@ def main():
         if choice == "create classroom" or choice == "create classrooms":
             clear()
             print(" ---------------------------------------------------------- ")
-            print("|                     CREATE CLASSROOM                     |")
+            print("|                       CREATE CLASSROOM                   |")
             print(" ---------------------------------------------------------- ")
             create_classroom_interface()
         elif choice == "list classrooms" or choice == "list classroom":
             clear()
             print(" ---------------------------------------------------------- ")
-            print("|                       CLASSROOM(S)                       |")
+            print("|                         CLASSROOM(S)                     |")
             print(" ---------------------------------------------------------- ")
             list_classrooms_interface()
         elif choice == "create assignment" or choice == "create assignments":
             clear()
             print(" ---------------------------------------------------------- ")
-            print("|                      NEW ASSIGNMENT                      |")
+            print("|                        NEW ASSIGNMENT                    |")
             print(" ---------------------------------------------------------- ")
             create_assignment_interface()
         elif choice == "list assignments" or choice == "list assignment":
             clear()
             print(" ---------------------------------------------------------- ")
-            print("|                      CLASSROOM(S)                        |")
+            print("|                        ASSIGNMENT(S)                     |")
             print(" ---------------------------------------------------------- ")
             list_assignment_interface()
         elif choice == "add student" or choice == "add students":
             clear()
             print(" ---------------------------------------------------------- ")
-            print("|                     ADD STUDENT                          |")
+            print("|                         ADD STUDENT                      |")
             print(" ---------------------------------------------------------- ")
             add_student_to_classroom_interface()
         elif choice == "remove student" or choice == "remove students":
             clear()
             print(" ---------------------------------------------------------- ")
-            print("|                     REMOVE STUDENT                       |")
+            print("|                       REMOVE STUDENT(S)                  |")
             print(" ---------------------------------------------------------- ")
             remove_student_to_classroom_interface()
         elif choice == "exit":
@@ -260,18 +260,20 @@ def add_student_to_classroom_interface():
     while True:
         # Takes input from user
         try:
-            choice_classroom = input("\n Which class would you like to add a student to?(Course name) ")
-            first_name = input("What is the student's first name?  ")
-            last_name = input("What is the student's last name?    ")
-            gender = input("What is the student's gender?   ")
-            student_number = int(input("What is the student's student number?   "))
-            grade = int(input("What is the student's current grade?   "))
-            email = input("What is the student's email?    ")
-            marks = list(map(int, input("What is the student's marks?  ").split()))
-            comments = input("What comments do you have for this student?   ")
+            choice_classroom = input("* Which class would you like to add a student to?(Course name) ")
+            first_name = input("* What is the student's first name?  ")
+            last_name = input("* What is the student's last name?    ")
+            gender = input("* What is the student's gender?   ")
+            student_number = int(input("* What is the student's student number?   "))
+            grade = int(input("* What is the student's current grade?   "))
+            email = input("* What is the student's email?    ")
+            marks = list(map(int, input("* What is the student's marks?  ").split()))
+            comments = input("* What comments do you have for this student?   ")
             break
         except ValueError:
-            print("Error, please enter the correct form, either a number or a word")
+            print(" ---------------------------------------------------------- ")
+            print("| Error, expected a word or a number.                      |")
+            print(" ---------------------------------------------------------- ")
 
     # Dictionary for an individual student
     student = {
@@ -316,7 +318,7 @@ def remove_student_to_classroom_interface():
     while True:
         try:
             #  Takes user input
-            desired_classroom = input("Which Classroom: ")
+            desired_classroom = input("* Which Classroom: ")
             student_name = input("* Which Student to remove: ")
 
             break

@@ -204,24 +204,22 @@ def create_assignment_interface():
                 writer.write(data)
             break
 
-
 def list_assignment_interface():
-    assignment_names = []
+    classrooms_names = []
 
     with open("data.json", "r") as data:
-        data = json.load(data.read())
-        for assignment in data["assignments"]:
-            names = assignment["name"]
-            assignment_names.append(names)
+        data = json.loads(data.read())
+        for classroom in data["classrooms"]:  # Iterates through classroom to print out all classroom names
+            course_names = classroom["course_name"]
+            classrooms_names.append(course_names)
 
-    print("\nYour Assignments:  ")
-    print(*assignment_names, sep=", ")
+    print(*classrooms_names, sep=", ")
 
     print("\n* Type the name of the assignment you want to view,")
     print("* Or type exit to exit the program.")
 
     try:
-        assignment = input("\n* Please enter the name of the assignment you want to view (Case Sensitive):  ")
+        assignment = input("\n* Please enter the name of the classroom you want to view (Case Sensitive):  ")
     except ValueError:
         print(" ---------------------------------------------------------- ")
         print("| Error, please enter a string.                            |")
@@ -232,10 +230,9 @@ def list_assignment_interface():
         clear()
         exit()
 
-    for assignment_info in data["assignments"]:
-        if assignment_info["name"] == assignment:
-            print(assignment_info)
-            break
+    for assignment_info in data["classrooms"]:
+        if assignment == assignment_info["course_name"]:
+            print(assignment_info["assignment_list"])
 
 # Function for adding students to a classroom    
 def add_student_to_classroom_interface():

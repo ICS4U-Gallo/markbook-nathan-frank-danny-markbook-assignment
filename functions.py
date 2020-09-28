@@ -1,8 +1,9 @@
-
-from markbook import create_classroom, create_assignment, calculate_average_mark, add_student_to_classroom, remove_student_from_classroom, edit_student
+from markbook import create_classroom, create_assignment, calculate_average_mark, add_student_to_classroom, \
+    remove_student_from_classroom, edit_student
 import json
 from os import system, name
 from time import sleep
+
 
 # Clears terminal
 def clear():
@@ -14,7 +15,7 @@ def clear():
     else:
         empty_screen = system('clear')
 
-        
+
 # Main Function
 def main():
     while True:
@@ -25,9 +26,8 @@ def main():
         print('| Type "list classrooms" if you want to list the classrooms.   |')
         print('| Type "create assignment" if you want to create an assignment.|')
         print('| Type "list assignments" if you want to list the assignments. |')
-        print('|Type "add student" if you want to add a student to a class.   |')
-        print('|Type "class average" if you wan to see class average.         |')
-        print('|Type "student average" if you want to see a student average   |')
+        print('| Type "add student" if you want to add a student to a class.  |')
+        print('| Type "remove student" to remove a student from a class.      |')
         print('| Type "exit" if you want to exit.                             |')
         print(" ---------------------------------------------------------- ")
         # Gets input from user for which menu option to go into
@@ -64,19 +64,21 @@ def main():
         elif choice == "list assignments" or choice == "list assignment":
             clear()
             print(" ---------------------------------------------------------- ")
-            print("|                      ASSIGNMENT(S)                       |")
+            print("|                      CLASSROOM(S)                        |")
             print(" ---------------------------------------------------------- ")
             list_assignment_interface()
-        elif choice == "add student" or choice =="add students":
+        elif choice == "add student" or choice == "add students":
             clear()
             print(" ---------------------------------------------------------- ")
             print("|                     ADD STUDENT                          |")
             print(" ---------------------------------------------------------- ")
             add_student_to_classroom_interface()
-        elif choice == "class average":
-            calculate_class_average()
-        elif choice == "student average":
-            pass
+        elif choice == "remove student" or choice == "remove students":
+            clear()
+            print(" ---------------------------------------------------------- ")
+            print("|                     REMOVE STUDENT                       |")
+            print(" ---------------------------------------------------------- ")
+            remove_student_to_classroom_interface()
         elif choice == "exit":
             clear()
             print(" ---------------------------------------------------------- ")
@@ -138,7 +140,7 @@ def list_classrooms_interface():
 
     with open("data.json", "r") as data:
         data = json.loads(data.read())
-        for classroom in data["classrooms"]:    # Iterates through the data file to list the classroom names
+        for classroom in data["classrooms"]:  # Iterates through the data file to list the classroom names
             course_names = classroom["course_name"]
             classrooms_names.append(course_names)
 
@@ -146,10 +148,11 @@ def list_classrooms_interface():
     print(*classrooms_names, sep=", ")
 
     print("\n* Type the name of the class(course name) you want to view,")
-    print("* Or type exit to exit the program.")
+    print("* Or type exit to return to the menu.")
 
     try:
-        choice_classroom = input("\n* Please enter the name of the class you want to view (Case Sensitive):  ")    # Takes input from user
+        choice_classroom = input(
+            "\n* Please enter the name of the class you want to view (Case Sensitive):  ")  # Takes input from user
     except ValueError:
         print(" ---------------------------------------------------------- ")
         print("| Error, please enter a string.                            |")
@@ -160,12 +163,14 @@ def list_classrooms_interface():
         clear()
         exit()
 
-
-    for classroom in data["classrooms"]:    # Iterates through classroom list in data file
-        if classroom["course_name"] == choice_classroom:    # If the iteration reaches the user input's specifictation, then print out that classroom's info
+    for classroom in data["classrooms"]:  # Iterates through classroom list in data file
+        if classroom["course_name"] == choice_classroom:  # If the iteration reaches the user input's specification, 
+            # then print out that classroom's info 
             print(classroom)
             break
 
+
+# Function for adding assignments to a classroom
 def create_assignment_interface():
     classrooms_names = []
 
@@ -179,6 +184,7 @@ def create_assignment_interface():
 
     while True:
         try:
+            # Takes input from user
             desired_classroom = input("Which Classroom: ")
             name = input("* Assignment Name: ")
             due = input("* Due Date: ")
@@ -190,7 +196,8 @@ def create_assignment_interface():
             print(" ---------------------------------------------------------- ")
 
     for classroom in data["classrooms"]:  # Iterate through the data files classroom
-        if desired_classroom == classroom["course_name"]:  # Check to see if the user's selected classroom is the current iteration
+        if desired_classroom == classroom["course_name"]:  # Check to see if the user's selected classroom is the 
+            # current iteration 
             # Gets data from the API function
             added_assignment = create_assignment(name, due, points)
 
@@ -204,6 +211,8 @@ def create_assignment_interface():
                 writer.write(data)
             break
 
+
+# Function for listing the assignments
 def list_assignment_interface():
     classrooms_names = []
 
@@ -216,9 +225,10 @@ def list_assignment_interface():
     print(*classrooms_names, sep=", ")
 
     print("\n* Type the name of the assignment you want to view,")
-    print("* Or type exit to exit the program.")
+    print("* Or type exit to return to the menu.")
 
     try:
+        # Takes input from user
         assignment = input("\n* Please enter the name of the classroom you want to view (Case Sensitive):  ")
     except ValueError:
         print(" ---------------------------------------------------------- ")
@@ -230,24 +240,25 @@ def list_assignment_interface():
         clear()
         exit()
 
-    for assignment_info in data["classrooms"]:
+    for assignment_info in data["classrooms"]:  # Iterates through classroom items to print out assignments
         if assignment == assignment_info["course_name"]:
-            print(assignment_info["assignment_list"])
+            print(*assignment_info["assignment_list"], sep=", ")
 
-# Function for adding students to a classroom    
+
+# Function for adding students to a classroom
 def add_student_to_classroom_interface():
     classrooms_names = []
 
-    with open("data.json", "r") as data:    
+    with open("data.json", "r") as data:
         data = json.loads(data.read())
-        for classroom in data["classrooms"]:    # Iterates through classroom to print out all classroom names
+        for classroom in data["classrooms"]:  # Iterates through classroom to print out all classroom names
             course_names = classroom["course_name"]
             classrooms_names.append(course_names)
 
     print(*classrooms_names, sep=", ")
 
     while True:
-        # Takes input from user 
+        # Takes input from user
         try:
             choice_classroom = input("\n Which class would you like to add a student to?(Course name) ")
             first_name = input("What is the student's first name?  ")
@@ -274,20 +285,58 @@ def add_student_to_classroom_interface():
         "comments": comments
     }
 
-    for classroom in data["classrooms"]:        # Iterate through the data files classroom
-        if choice_classroom == classroom["course_name"]:    # Check to see if the user's selected classroom is the current iteration
+    for classroom in data["classrooms"]:  # Iterate through the data files classroom
+        if choice_classroom == classroom[
+            "course_name"]:  # Check to see if the user's selected classroom is the current iteration
             # Gets data from the API function
             added_student = add_student_to_classroom(student, classroom)
-            
+
             # Set the classroom as the data returned from the API
             classroom = added_student
-            
+
             with open("data.json", "w") as writer:
                 # Converts the python into json strings
                 data = json.dumps(data, indent=4)
                 # Overwrite the current data with the new added on data
-                writer.write(data) 
+                writer.write(data)
             break
 
-def calculate_class_average():
-    pass
+
+def remove_student_to_classroom_interface():
+    classrooms_names = []
+
+    with open("data.json", "r") as data:
+        data = json.loads(data.read())
+        for classroom in data["classrooms"]:  # Iterates through classroom to print out all classroom names
+            course_names = classroom["course_name"]
+            classrooms_names.append(course_names)
+
+    print(*classrooms_names, sep=", ")
+
+    while True:
+        try:
+            #  Takes user input
+            desired_classroom = input("Which Classroom: ")
+            student_name = input("* Which Student to remove: ")
+
+            break
+        except ValueError:
+            print(" ---------------------------------------------------------- ")
+            print("| Error, please enter a string.                            |")
+            print(" ---------------------------------------------------------- ")
+
+    for classroom in data["classrooms"]:  # Iterate through the data files classroom
+        if desired_classroom == classroom["course_name"]:  # Check to see if the user's selected classroom is the 
+            # current iteration 
+            for names in classroom["student_list"]:  # Iterates through student list to find specified student to remove
+                if student_name == names:
+                    # Gets data from the API function
+                    removed_student = remove_student_from_classroom(name, classroom)
+                    classroom = removed_student
+
+            with open("data.json", "w") as writer:
+                # Converts the python into json strings
+                data = json.dumps(data, indent=4)
+                # Overwrite the current data with the new added on data
+                writer.write(data)
+            break

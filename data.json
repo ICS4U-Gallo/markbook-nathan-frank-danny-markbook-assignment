@@ -9,18 +9,26 @@
                 {
                     "first_name": "Danny",
                     "last_name": "Lu",
-                    "gender": "male",
+                    "gender": "Male",
                     "student_number": 123,
                     "grade": 12,
-                    "email": "dan",
+                    "email": "danny.lu21@ycdsbk12.ca",
                     "marks": [
                         100,
-                        90
+                        90,
+                        50,
+                        0
                     ],
-                    "comments": "no"
+                    "comments": "Super good!"
                 }
             ],
-            "assignment_list": []
+            "assignment_list": [
+                {
+                    "name": "CPT",
+                    "due": "9/28/2020",
+                    "points": 100
+                }
+            ]
         },
         {
             "course_code": "MCV4U1",
@@ -29,13 +37,6 @@
             "teacher": "Zmak",
             "student_list": [],
             "assignment_list": []
-        }
-    ],
-    "assignments": [
-        {
-            "name": "Abc",
-            "due": "January 1",
-            "points": 100
         }
     ]
 }

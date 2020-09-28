@@ -25,7 +25,9 @@ def main():
         print('| Type "list classrooms" if you want to list the classrooms.   |')
         print('| Type "create assignment" if you want to create an assignment.|')
         print('| Type "list assignments" if you want to list the assignments. |')
-        print('Type "add student" if you want to add a student to a class.    |')
+        print('|Type "add student" if you want to add a student to a class.   |')
+        print('|Type "class average" if you wan to see class average.         |')
+        print('|Type "student average" if you want to see a student average   |')
         print('| Type "exit" if you want to exit.                             |')
         print(" ---------------------------------------------------------- ")
         # Gets input from user for which menu option to go into
@@ -71,6 +73,10 @@ def main():
             print("|                     ADD STUDENT                          |")
             print(" ---------------------------------------------------------- ")
             add_student_to_classroom_interface()
+        elif choice == "class average":
+            calculate_class_average()
+        elif choice == "student average":
+            pass
         elif choice == "exit":
             clear()
             print(" ---------------------------------------------------------- ")
@@ -160,10 +166,20 @@ def list_classrooms_interface():
             print(classroom)
             break
 
-
 def create_assignment_interface():
+    classrooms_names = []
+
+    with open("data.json", "r") as data:
+        data = json.loads(data.read())
+        for classroom in data["classrooms"]:  # Iterates through classroom to print out all classroom names
+            course_names = classroom["course_name"]
+            classrooms_names.append(course_names)
+
+    print(*classrooms_names, sep=", ")
+
     while True:
         try:
+            desired_classroom = input("Which Classroom: ")
             name = input("* Assignment Name: ")
             due = input("* Due Date: ")
             points = int(input("* Total Score: "))
@@ -173,9 +189,20 @@ def create_assignment_interface():
             print("| Error, please enter a string.                            |")
             print(" ---------------------------------------------------------- ")
 
-    assignment = create_assignment(name, due, points)
+    for classroom in data["classrooms"]:  # Iterate through the data files classroom
+        if desired_classroom == classroom["course_name"]:  # Check to see if the user's selected classroom is the current iteration
+            # Gets data from the API function
+            added_assignment = create_assignment(name, due, points)
 
-    add_to_data("data.json", "assignments", assignment)
+            # Set the classroom as the data returned from the API
+            classroom["assignment_list"].append(added_assignment)
+
+            with open("data.json", "w") as writer:
+                # Converts the python into json strings
+                data = json.dumps(data, indent=4)
+                # Overwrite the current data with the new added on data
+                writer.write(data)
+            break
 
 
 def list_assignment_interface():
@@ -264,3 +291,6 @@ def add_student_to_classroom_interface():
                 # Overwrite the current data with the new added on data
                 writer.write(data) 
             break
+
+def calculate_class_average():
+    pass

@@ -22,7 +22,6 @@ from typing import Dict
 class Assignment:
     
     def __init__(self):
-
         self.assignment = None
 
 
